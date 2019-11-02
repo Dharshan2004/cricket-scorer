@@ -54,6 +54,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QA-p2-2pj">
+                                <rect key="frame" x="20" y="44" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="arrow_back_ios-24px 1"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="m6V-UM-1fU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3XH-VA-fBp"/>
@@ -61,11 +69,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUm-Em-ebY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424.63768115942031" y="-966.29464285714278"/>
+            <point key="canvasLocation" x="821.73913043478262" y="-864.50892857142856"/>
         </scene>
     </scenes>
     <resources>
         <image name="Start Match button" width="271" height="77"/>
+        <image name="arrow_back_ios-24px 1" width="48" height="48"/>
         <image name="background-start" width="390" height="701"/>
     </resources>
 </document>
