@@ -15,6 +15,7 @@
 		D207A3B42363FEE200825923 /* cricscoreriosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207A3B32363FEE200825923 /* cricscoreriosTests.swift */; };
 		D207A3BF2363FEE200825923 /* cricscoreriosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207A3BE2363FEE200825923 /* cricscoreriosUITests.swift */; };
 		D2D33A14236D1A48006FB48B /* MatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D33A13236D1A48006FB48B /* MatchTableViewController.swift */; };
+		D2D33A16236D3807006FB48B /* OpeningPlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D33A15236D3807006FB48B /* OpeningPlayersTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D207A3BE2363FEE200825923 /* cricscoreriosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cricscoreriosUITests.swift; sourceTree = "<group>"; };
 		D207A3C02363FEE200825923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2D33A13236D1A48006FB48B /* MatchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewController.swift; sourceTree = "<group>"; };
+		D2D33A15236D3807006FB48B /* OpeningPlayersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningPlayersTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D207A39E2363FEE000825923 /* AppDelegate.swift */,
 				D207A3A02363FEE000825923 /* ViewController.swift */,
 				D207A3A22363FEE000825923 /* Main.storyboard */,
+				D2D33A15236D3807006FB48B /* OpeningPlayersTableViewController.swift */,
 				D2D33A13236D1A48006FB48B /* MatchTableViewController.swift */,
 				D207A3A52363FEE200825923 /* Assets.xcassets */,
 				D207A3A72363FEE200825923 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D207A3A12363FEE000825923 /* ViewController.swift in Sources */,
+				D2D33A16236D3807006FB48B /* OpeningPlayersTableViewController.swift in Sources */,
 				D2D33A14236D1A48006FB48B /* MatchTableViewController.swift in Sources */,
 				D207A39F2363FEE000825923 /* AppDelegate.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  MatchTableViewController.swift
+//  OpeningPlayersTableViewController.swift
 //  cricscorerios
 //
 //  Created by ctssstudent on 02/11/2019.
@@ -8,17 +8,8 @@
 
 import UIKit
 
-class MatchTableViewController: UITableViewController {
+class OpeningPlayersTableViewController: UITableViewController {
 
-    @IBOutlet weak var Hostteam: UITextField!
-    @IBOutlet weak var Visitorteam: UITextField!
-    @IBOutlet weak var Toss: UISegmentedControl!
-    @IBOutlet weak var Opted: UISegmentedControl!
-    @IBOutlet weak var NumPlayersSlider: UISlider!
-    @IBOutlet weak var NumPlayersLabel: UILabel!
-    @IBOutlet weak var NumOversSlider: UISlider!
-    @IBOutlet weak var NumOversLabel: UILabel!
-    @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,24 +24,13 @@ class MatchTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 6
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        var rows = 0
-        if (section == 0){
-            rows = 2
-        }
-        else if (section > 6) {
-            rows = 0
-        }
-        else {
-            rows = 1
-        }
-        return rows
+        return 0
     }
-    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
