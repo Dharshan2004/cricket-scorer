@@ -14,11 +14,9 @@ class MatchTableViewController: UITableViewController {
     @IBOutlet weak var Visitorteam: UITextField!
     @IBOutlet weak var Toss: UISegmentedControl!
     @IBOutlet weak var Opted: UISegmentedControl!
-    @IBOutlet weak var NumPlayersSlider: UISlider!
-    @IBOutlet weak var NumPlayersLabel: UILabel!
-    @IBOutlet weak var NumOversSlider: UISlider!
-    @IBOutlet weak var NumOversLabel: UILabel!
+    @IBOutlet weak var numberoversField: UITextField!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var numberplayersField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
