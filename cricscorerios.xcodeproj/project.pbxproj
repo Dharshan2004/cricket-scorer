@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42E94C762373B00B00BA277D /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E94C752373B00B00BA277D /* Structs.swift */; };
+		42E94C782373C72C00BA277D /* AllPlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E94C772373C72C00BA277D /* AllPlayersTableViewController.swift */; };
+		42E94C7A2373CB2800BA277D /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E94C792373CB2800BA277D /* PlayerTableViewCell.swift */; };
 		42F1EB73236FCCB60088C883 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F1EB72236FCCB60088C883 /* ScoreboardViewController.swift */; };
 		D207A39F2363FEE000825923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207A39E2363FEE000825923 /* AppDelegate.swift */; };
 		D207A3A12363FEE000825923 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D207A3A02363FEE000825923 /* ViewController.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42E94C752373B00B00BA277D /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		42E94C772373C72C00BA277D /* AllPlayersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPlayersTableViewController.swift; sourceTree = "<group>"; };
+		42E94C792373CB2800BA277D /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		42F1EB72236FCCB60088C883 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScoreboardViewController.swift; path = cricscorerios/ScoreboardViewController.swift; sourceTree = "<group>"; };
 		D207A39B2363FEE000825923 /* cricscorerios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cricscorerios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D207A39E2363FEE000825923 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				42F1EB72236FCCB60088C883 /* ScoreboardViewController.swift */,
+				42E94C752373B00B00BA277D /* Structs.swift */,
 				D207A39D2363FEE000825923 /* cricscorerios */,
 				D207A3B22363FEE200825923 /* cricscoreriosTests */,
 				D207A3BD2363FEE200825923 /* cricscoreriosUITests */,
@@ -107,11 +114,13 @@
 				D207A39E2363FEE000825923 /* AppDelegate.swift */,
 				D207A3A02363FEE000825923 /* ViewController.swift */,
 				D207A3A22363FEE000825923 /* Main.storyboard */,
+				42E94C772373C72C00BA277D /* AllPlayersTableViewController.swift */,
 				D2D33A15236D3807006FB48B /* OpeningPlayersTableViewController.swift */,
 				D2D33A13236D1A48006FB48B /* MatchTableViewController.swift */,
 				D207A3A52363FEE200825923 /* Assets.xcassets */,
 				D207A3A72363FEE200825923 /* LaunchScreen.storyboard */,
 				D207A3AA2363FEE200825923 /* Info.plist */,
+				42E94C792373CB2800BA277D /* PlayerTableViewCell.swift */,
 			);
 			path = cricscorerios;
 			sourceTree = "<group>";
@@ -266,8 +275,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D207A3A12363FEE000825923 /* ViewController.swift in Sources */,
+				42E94C762373B00B00BA277D /* Structs.swift in Sources */,
 				D2D33A16236D3807006FB48B /* OpeningPlayersTableViewController.swift in Sources */,
 				D2D33A14236D1A48006FB48B /* MatchTableViewController.swift in Sources */,
+				42E94C7A2373CB2800BA277D /* PlayerTableViewCell.swift in Sources */,
+				42E94C782373C72C00BA277D /* AllPlayersTableViewController.swift in Sources */,
 				D207A39F2363FEE000825923 /* AppDelegate.swift in Sources */,
 				42F1EB73236FCCB60088C883 /* ScoreboardViewController.swift in Sources */,
 			);

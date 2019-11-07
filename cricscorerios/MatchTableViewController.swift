@@ -17,6 +17,9 @@ class MatchTableViewController: UITableViewController {
     @IBOutlet weak var numberoversField: UITextField!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var numberplayersField: UITextField!
+    
+    var match: Match?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,7 +36,43 @@ class MatchTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 6
     }
-
+    
+    @IBAction func startMatch(_ sender: Any) {
+        if Hostteam.text == "" || Visitorteam.text == "" || numberplayersField.text == "" || numberoversField.text == "" || Int(numberoversField.text!) == nil || Int(numberplayersField.text!) == nil || Int(numberplayersField.text!)! > 11 || Int(numberplayersField.text! )! < 1 || Int(numberoversField.text!)! < 0 {
+            let alert = UIAlertController(title: "Missing or invalid input!", message: "One or more fields are either missing or invalid.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true)
+        } else {
+            let toss = Toss.selectedSegmentIndex
+            let opted = Opted.selectedSegmentIndex
+            var team1 = ""
+            var team2 = ""
+            
+            if toss == 0 && opted == 0 {
+                team1 = Hostteam.text ?? "Host"
+                team2 = Visitorteam.text ?? "Vistor"
+            }
+            
+            else if toss == 0 && opted == 1 {
+                team1 = Visitorteam.text ?? "Vistor"
+                team2 = Hostteam.text ?? "Host"
+            }
+            else if toss == 1 && opted == 0 {
+                team1 = Visitorteam.text ?? "Vistor"
+                team2 = Hostteam.text ?? "Host"
+            }
+            
+            else if toss == 1 && opted == 1 {
+                team2 = Visitorteam.text ?? "Vistor"
+                team1 = Hostteam.text ?? "Host"
+            }
+            match = Match(numberOfOvers: Int(numberoversField.text!)!, team1: team1, team2: team2, numberPlayers: Int(numberplayersField.text!)!, team1Score: 0, team2Score: 0, winners: "", team1players:[], team2players: [] )
+            performSegue(withIdentifier: "startMatch", sender: self);
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         var rows = 0
@@ -95,14 +134,18 @@ class MatchTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "startMatch" {
+            let destination = segue.destination as! AllPlayersTableViewController;
+            destination.match = match;
+        }
     }
-    */
+    
 
 }
