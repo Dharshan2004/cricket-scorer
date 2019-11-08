@@ -56,14 +56,19 @@ class ScoreboardViewController: UIViewController {
     var match: Match!
     var onStrike: Int = 1
     var ballsBowled = 0
+    var prevBall = ""
+    var numRun = -1
     var battingTeam = "team1"
-    var overHistory:[String]!
+    var overHistory:[String]! = [] 
     var overCount: Int = 0
     var innings: Int!
-    var bowlers:[String:Bowler]!
+    var bowlers:[String:Bowler]! = [:]
+    var batsmenList:[String:Batsmen]! = [:]
     var batsmen: Batsmen!
+    var batsmenNon: Batsmen!
     var target: Int!
-    
+    var overIsUp: Bool! = false
+    var wicketDown: Bool! = false
     var previousBtn: UIButton!
     
     
@@ -90,6 +95,8 @@ class ScoreboardViewController: UIViewController {
     @IBAction func buttonHandler(sender: UIButton) {
         previousBtn = sender
         batsmen = getBatsmen(strikepos: onStrike)
+        batsmenNon = getNonBatsmen(strikepos: onStrike)
+        
         switch sender
         {
         case sixButton:
@@ -97,44 +104,84 @@ class ScoreboardViewController: UIViewController {
                 match.team1Score += 6
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 6, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 6
+                bowler.b += 1
+                bowler.r += 6
+                overHistory.append("6")
             }
             else {
                 match.team2Score += 6
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 6, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 6
+                overHistory.append("6")
+                bowler.b += 1
+                bowler.r += 6
             }
         case fourButton:
             if battingTeam == "team1"{
                 match.team1Score += 4
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 4, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 4
+                overHistory.append("4")
+                bowler.b += 1
+                bowler.r += 4
             }
             else {
                 match.team2Score += 4
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 4, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 4
+                overHistory.append("4")
+                bowler.b += 1
+                bowler.r += 4
             }
         case twoButton:
             if battingTeam == "team1"{
                 match.team1Score += 2
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 2, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 2
+                overHistory.append("2")
+                bowler.b += 1
+                bowler.r += 2
             }
             else {
                 match.team2Score += 2
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 2, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 2
+                overHistory.append("2")
+                bowler.b += 1
+                bowler.r += 2
             }
         case zeroButton:
             if battingTeam == "team1"{
                 match.team1Score += 0
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 0, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 0
+                overHistory.append("0")
+                bowler.b += 1
+                bowler.r += 0
             }
             else {
                 match.team2Score += 0
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 0, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 0
+                overHistory.append("0")
+                bowler.b += 1
+                bowler.r += 0
             }
         case fiveButton:
             if battingTeam == "team1"{
@@ -142,12 +189,22 @@ class ScoreboardViewController: UIViewController {
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 6, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 5
+                overHistory.append("5")
+                bowler.b += 1
+                bowler.r += 5
             }
             else {
                 match.team2Score += 5
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 5, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 5
+                overHistory.append("5")
+                bowler.b += 1
+                bowler.r += 5
             }
         case threeButton:
             if battingTeam == "team1"{
@@ -155,12 +212,22 @@ class ScoreboardViewController: UIViewController {
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 3, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 3
+                overHistory.append("3")
+                bowler.b += 1
+                bowler.r += 3
             }
             else {
                 match.team2Score += 3
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 3, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 3
+                overHistory.append("3")
+                bowler.b += 1
+                bowler.r += 3
             }
         case oneButton:
             if battingTeam == "team1"{
@@ -168,50 +235,153 @@ class ScoreboardViewController: UIViewController {
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 1, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 1
+                overHistory.append("1")
+                bowler.b += 1
+                bowler.r += 1
             }
             else {
                 match.team2Score += 1
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 1, extra: false)
+                numRun = 1
+                overHistory.append("1")
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                bowler.b += 1
+                bowler.r += 1
             }
         case wdButton:
             if battingTeam == "team1"{
                 match.team1Score += 1
                 ballsBowled -= 1
+                overHistory.append("wd")
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                if numRun%2 == 0 {
+                    batsmen.r -= numRun
+                }
+                else {
+                    batsmenNon.r -= numRun
+                }
+                bowler.r += 1
             }
             else {
                 match.team2Score += 1
                 ballsBowled -= 1
+                overHistory.append("wd")
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                bowler.r += 1
+                if numRun%2 == 0 {
+                    batsmen.r -= numRun
+                }
+                else {
+                    batsmenNon.r -= numRun
+                }
             }
         case wButton:
-            print("W")
+            if innings == 1 {
+                overHistory.append("w")
+                bowler.w += 1
+                
+            }
+            else {
+                overHistory.append("w")
+                bowler.w += 1
+            }
+            
+            
         case nbButton:
-            if battingTeam == "team1"{
-                match.team1Score -= 1
-                ballsBowled -= 1
+            if numRun != -1 {
+                if battingTeam == "team1"{
+                    match.team1Score -= 1
+                    ballsBowled -= 1
+                    overHistory.append("nb")
+                    bowler.r += 1
+                    refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                   
+                }
+                else {
+                    match.team2Score += 1
+                    ballsBowled -= 1
+                    overHistory.append("nb")
+                    bowler.r += 1
+                    refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                }
             }
+            
             else {
-                match.team2Score += 1
-                ballsBowled -= 1
+                let alert = UIAlertController(title: "Button cannot be used", message: "This button cannot be used until a runs button has been pressed", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
+            
         case lbButton:
-            if battingTeam == "team1"{
-                match.team1Score += 0
-                ballsBowled += 0
+            if numRun != -1 {
+                if battingTeam == "team1"{
+                    match.team1Score += 0
+                    ballsBowled += 0
+                    overHistory.append("lb")
+                    refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                    if numRun%2 == 0 {
+                        batsmen.r -= numRun
+                    }
+                    else {
+                        batsmenNon.r -= numRun
+                    }
+                }
+                else {
+                    match.team2Score += 0
+                    ballsBowled += 0
+                    overHistory.append("lb")
+                    refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                    if numRun%2 == 0 {
+                        batsmen.r -= numRun
+                    }
+                    else {
+                        batsmenNon.r -= numRun
+                    }
+                }
             }
             else {
-                match.team2Score += 0
-                ballsBowled += 0
+                let alert = UIAlertController(title: "Button cannot be used", message: "This button cannot be used until a runs button has been pressed", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         case bButton:
-            if battingTeam == "team1"{
-                match.team1Score += 0
-                ballsBowled += 0
+            if numRun != -1 {
+                if battingTeam == "team1"{
+                    match.team1Score += 0
+                    ballsBowled += 0
+                    overHistory.append("b")
+                    refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                    if numRun%2 == 0 {
+                        batsmen.r -= numRun
+                    }
+                    else {
+                        batsmenNon.r -= numRun
+                    }
+                }
+                else {
+                    match.team2Score += 0
+                    ballsBowled += 0
+                    overHistory.append("b")
+                    refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                    if numRun%2 == 0 {
+                        batsmen.r -= numRun
+                    }
+                    else {
+                        batsmenNon.r -= numRun
+                    }
+                }
             }
             else {
-                match.team2Score += 0
-                ballsBowled += 0
+                let alert = UIAlertController(title: "Button cannot be used", message: "This button cannot be used until a runs button has been pressed", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         case sevenButton:
             if battingTeam == "team1"{
@@ -219,29 +389,69 @@ class ScoreboardViewController: UIViewController {
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 7, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 7
+                overHistory.append("7")
+                bowler.b += 1
+                bowler.r += 7
             }
             else {
                 match.team2Score += 7
                 ballsBowled += 1
                 onStrike = swapStrike(Strike: onStrike)
                 updateBatsmenStats(batsman: batsmen, runs: 7, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 7
+                overHistory.append("7")
+                bowler.b += 1
+                bowler.r += 7
             }
         case eightButton:
             if battingTeam == "team1"{
                 match.team1Score += 8
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 8, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 8
+                overHistory.append("8")
+                bowler.b += 1
+                bowler.r += 8
             }
             else {
                 match.team2Score += 8
                 ballsBowled += 1
                 updateBatsmenStats(batsman: batsmen, runs: 8, extra: false)
+                refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+                numRun = 8
+                overHistory.append("8")
+                bowler.b += 1
+                bowler.r += 8
             }
         case undoButton:
             print("undo")
         default:
             print("unknown")
         }
+        
+        if ballsBowled == 6 {
+            let alert = UIAlertController(title: "Over is up", message: "6 balls have been bowled and has any of this happened", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Wd", style: .default, handler: { (alert) in
+                self.wd6ball(batsmen1: self.batsmen, batsmen2: self.batsmenNon, bowler: self.bowler, match: self.match)
+            }))
+            alert.addAction(UIAlertAction(title: "NB", style: .default, handler: { (alert) in
+                self.nb6ball(batsmen1: self.batsmen, batsmen2: self.batsmenNon, bowler: self.bowler, match: self.match)
+            }))
+            alert.addAction(UIAlertAction(title: "W+Wd", style: .default, handler: { (alert) in
+                
+            } ))
+            
+            alert.addAction(UIAlertAction(title: "None", style: .default, handler: { (alert) in
+                self.performSegue(withIdentifier: "overUp", sender: self)
+            }))
+            self.present(alert, animated: true)
+        }
+        
     }
     @IBAction func backPressed(_ sender: Any) {
     }
@@ -278,7 +488,37 @@ class ScoreboardViewController: UIViewController {
         else if strikepos == 2 {
             batsman = batsmen2
         }
-        return batsmen
+        return batsman
+    }
+    
+    func getNonBatsmen(strikepos:Int) -> Batsmen{
+        var batsman:Batsmen!
+        if strikepos == 1 {
+            batsman = batsmen1
+        }
+        else if strikepos == 2 {
+            batsman = batsmen2
+        }
+        return batsman
+    }
+    
+    
+    func nb6ball (batsmen1:Batsmen, batsmen2:Batsmen, bowler:Bowler, match:Match) {
+        if battingTeam == "team1"{
+            match.team1Score -= 1
+            ballsBowled -= 1
+            overHistory.append("nb")
+            bowler.r += 1
+            refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+            
+        }
+        else {
+            match.team2Score += 1
+            ballsBowled -= 1
+            overHistory.append("nb")
+            bowler.r += 1
+            refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+        }
     }
     
     func updateBatsmenStats(batsman:Batsmen, runs: Int, extra: Bool) {
@@ -298,6 +538,36 @@ class ScoreboardViewController: UIViewController {
             bats.b += 1
         }
         bats.sr = Double((bats.r/bats.b)*100)
+    }
+    
+    func wd6ball(batsmen1:Batsmen, batsmen2:Batsmen, bowler:Bowler, match:Match) {
+        if battingTeam == "team1"{
+            match.team1Score += 1
+            ballsBowled -= 1
+            overHistory.append("wd")
+            refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+        if numRun%2 == 0 {
+            batsmen1.r -= numRun
+        }
+        else {
+            batsmen2.r -= numRun
+        }
+        bowler.r += 1
+    }
+        else {
+            match.team2Score += 1
+            ballsBowled -= 1
+            overHistory.append("wd")
+            refreshPage(batsmen1: batsmen1, batsmen2: batsmen2, bowler: bowler, match: match)
+            bowler.r += 1
+            if numRun%2 == 0 {
+                batsmen1.r -= numRun
+            }
+            else {
+                batsmen2.r -= numRun
+            }
+        }
+        
     }
     
     func refreshPage(batsmen1: Batsmen, batsmen2:Batsmen, bowler:Bowler, match:Match) {

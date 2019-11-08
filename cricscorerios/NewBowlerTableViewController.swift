@@ -1,28 +1,19 @@
 //
-//  OpeningPlayersTableViewController.swift
+//  NewBowlerTableViewController.swift
 //  cricscorerios
 //
-//  Created by ctssstudent on 02/11/2019.
+//  Created by TemasekJC on 8/11/19.
 //  Copyright © 2019 ctssstudent. All rights reserved.
 //
 
 import UIKit
 
-class OpeningPlayersTableViewController: UITableViewController {
-    
-    @IBOutlet weak var strikerLabel: UITextField!
-    @IBOutlet weak var nonStrikerLabel: UITextField!
-    @IBOutlet weak var bowlerLabel: UITextField!
-    var match: Match!
-    
-    var batsmen1: Batsmen!
-    var batsmen2: Batsmen!
-    var bowler: Bowler!
+class NewBowlerTableViewController: UITableViewController {
 
+    @IBOutlet weak var bowlerLabel: UITextField!
+    @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(match)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,29 +26,14 @@ class OpeningPlayersTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 0
     }
 
-    @IBAction func onStart(_ sender: Any) {
-        if !(match?.team1players.contains(strikerLabel.text!))! || !(match?.team1players.contains(nonStrikerLabel.text!))! || !(match?.team2players.contains(bowlerLabel.text!))! {
-            
-            let alert = UIAlertController(title: "404 Player not found", message: "One or more player fields are either missing or invalid.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
-        else {
-            batsmen1 = Batsmen(name: strikerLabel.text!, r: 0, b: 0, fours: 0, sixes: 0, sr: 0.0, dismissal: "")
-            batsmen2 = Batsmen(name: nonStrikerLabel.text!, r: 0, b: 0, fours: 0, sixes: 0, sr: 0.0, dismissal: "")
-            bowler = Bowler(name: bowlerLabel.text!, r: 0, b: 0, m: 0, w: 0, er: 0.0)
-            performSegue(withIdentifier: "startInnings", sender: self)
-        }
-    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -103,16 +79,6 @@ class OpeningPlayersTableViewController: UITableViewController {
     }
     */
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "startInnings" {
-            let dest = segue.destination as! ScoreboardViewController
-            dest.match = match
-            dest.batsmen1 = batsmen1
-            dest.batsmen2 = batsmen2
-            dest.bowler = bowler
-            dest.innings = 1
-        }
-    }
     /*
     // MARK: - Navigation
 

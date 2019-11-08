@@ -15,15 +15,19 @@ class Batsmen {
     var fours: Int
     var sixes: Int
     var sr: Double
+    var dismissal: String
     
-    init(name:String, r:Int, b:Int, fours:Int, sixes: Int, sr:Double) {
+    init(name:String, r:Int, b:Int, fours:Int, sixes: Int, sr:Double, dismissal:String) {
         self.name = name
         self.r = r
         self.b = b
         self.fours = fours
         self.sixes = sixes
         self.sr = sr
+        self.dismissal = dismissal
     }
+    
+    
 }
 
 class Bowler {
@@ -60,18 +64,22 @@ class Match {
     var team2: String
     var numberPlayers: Int
     var team1Score: Int
+    var team1Wickets: Int
     var team2Score: Int
+    var team2Wickets: Int
     var winners: String
     var team1players: [String]
     var team2players: [String]
     
-    init(team1:String, team2:String, numberPlayers:Int, team1Score: Int, team2Score: Int, numberofOvers:Int, winners: String, team1Players: [String], team2Players: [String]) {
+    init(team1:String, team2:String, numberPlayers:Int, team1Score: Int, team2Score: Int, numberofOvers:Int, winners: String, team1Players: [String], team2Players: [String], team1Wickets: Int, team2Wickets: Int) {
         self.team1 = team1
         self.team2 = team2
         self.numberPlayers = numberPlayers
         self.numberOfOvers = numberofOvers
         self.team1Score = team1Score
+        self.team1Wickets = team1Wickets
         self.team2Score = team2Score
+        self.team2Wickets = team2Wickets
         self.winners = winners
         self.team1players = team1Players
         self.team2players = team2Players

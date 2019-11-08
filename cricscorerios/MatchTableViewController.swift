@@ -68,7 +68,7 @@ class MatchTableViewController: UITableViewController {
                 team2 = Visitorteam.text ?? "Vistor"
                 team1 = Hostteam.text ?? "Host"
             }
-            match = Match(numberOfOvers: Int(numberoversField.text!)!, team1: team1, team2: team2, numberPlayers: Int(numberplayersField.text!)!, team1Score: 0, team2Score: 0, winners: "", team1players:[], team2players: [] )
+            match = Match(team1: team1, team2: team2, numberPlayers: Int(numberplayersField.text!)!, team1Score: 0, team2Score: 0, numberofOvers: Int(numberoversField.text!)!, winners: "", team1Players: [], team2Players: [], team1Wickets: 0, team2Wickets: 0)
             performSegue(withIdentifier: "startMatch", sender: self);
         }
     }
